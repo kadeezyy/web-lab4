@@ -1,0 +1,23 @@
+version: "3.9"
+services:
+  web-app:
+    container_name: webapp
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '9900:9900'
+    environment:
+      - POSTGRES_USERNAME=postgres
+      - POSTGRES_PASSWORD=admin
+
+  db:
+    container_name: db_webapp
+    image: postgres:14.0-alpine
+    restart: always
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_USERNAME=postgres
+      - POSTGRES_PASSWORD=admin
+
